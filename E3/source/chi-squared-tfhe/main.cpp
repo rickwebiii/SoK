@@ -2,7 +2,7 @@
 #include "e3int.h"
 #include "../../src/e3key.h"
 
-using SecureInt = TypeUint<32>;
+using SecureInt = TypeUint<16>;
 
 int main()
 {

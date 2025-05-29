@@ -3,12 +3,15 @@ FROM marblehe/base_cingulata
 # copy eval program into container
 COPY source/ /cingu/eval
 
+RUN apt update
+RUN apt install -y time
+
 # copy TFHE examples into Cingulata tree and rebuild
 RUN cp -r  /cingu/eval/cardio-cingulata-tfhe /cingu/tests/tfhe/cardio \
  && cp -r  /cingu/eval/chi-squared-cingulata-tfhe /cingu/tests/tfhe/chi-squared \
  && cd /cingu/build_tfhe \
  && cmake -DTFHE_PATH=/tfhe -j $(nproc) .. \
- && make
+ && time make -j $(nproc) > compile_time
 
 # make entrypoint script executable
 WORKDIR /cingu/eval

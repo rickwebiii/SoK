@@ -49,16 +49,16 @@ int main() {
       make_shared<IntOpGenSize>());
 
   // Declares variables for conditions with each 8 bit.
-  CiInt n0{CiInt::u8};
-  CiInt n1{CiInt::u8};
-  CiInt n2{CiInt::u8};
+  CiInt n0{CiInt::u16};
+  CiInt n1{CiInt::u16};
+  CiInt n2{CiInt::u16};
 
   // Fills conditions with values from file.
   n0.read("n0");
   n1.read("n1");
   n2.read("n2");
 
-  CiInt alpha{CiInt::u32};
+  CiInt alpha{CiInt::u16};
   alpha = ((n0<<2)*n2)-(n1*n1);
   alpha = alpha * alpha;
 

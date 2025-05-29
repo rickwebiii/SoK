@@ -32,9 +32,9 @@ using namespace cingulata;
 
 int main(int argc, char *argv[]) {
 
-  CiInt n0{2, 8, false};
-  CiInt n1{7, 8, false};
-  CiInt n2{9, 8, false};
+  CiInt n0{2, 16, false};
+  CiInt n1{7, 16, false};
+  CiInt n2{9, 16, false};
 
   /* Only tfhe bit executor is needed for encryption/decryption and IO operations  */
   CiContext::set_bit_exec(make_shared<TfheBitExec>("tfhe.sk", TfheBitExec::Secret));
