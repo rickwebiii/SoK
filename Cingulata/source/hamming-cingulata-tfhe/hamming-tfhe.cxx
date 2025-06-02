@@ -19,6 +19,7 @@
 */
 
 #include <vector>
+#include <sstream>
 
 /* local includes */
 #include <bit_exec/decorator/attach.hxx>
@@ -40,6 +41,8 @@ using namespace cingulata;
 #define DIABETES_FIELD 3
 #define PRESSURE_FIELD 4
 
+#define SIZE 1
+
 int main() {
   /* Set context to tfhe bit executor and size minimized integer
    * operations */
@@ -48,19 +51,39 @@ int main() {
           "tfhe.pk", TfheBitExec::Public),
       make_shared<IntOpGenSize>());
 
-  // Declares variables for conditions with each 8 bit.
-  CiInt x{CiInt::u64};
-  CiInt y{CiInt::u64};
+  vector<CiInt> x;
+  vector<CiInt> y;
 
-  // Fills conditions with values from file.
-  x.read("x");
-  y.read("y");
+    // Fills conditions with values from file.
+  for (int i = 0; i < SIZE; i++) {
+    stringstream ss;
+    ss << "x" << i;
+    string str;
+    ss >> str;
 
-  CiInt x_xor_y = x ^ y;
+    x.push_back(CiInt{CiInt::u8});
+    x[i].read(str.c_str());
+  }
+
+  for (int i = 0; i < SIZE; i++) {
+    stringstream ss;
+    ss << "y" << i;
+    string str;
+    ss >> str;
+
+    y.push_back(CiInt{CiInt::u8});
+    y[i].read(str.c_str());
+  }
+
   CiInt count{CiInt::u8v(0)};
   CiInt one{CiInt::u8v(1)};
-  for (int i = 0; i < 64; i++) {
-    count += (x_xor_y >> i) & one;
+
+  for (int i = 0; i < SIZE; i++) {
+    CiInt x_xor_y = x[i] ^ y[i];
+
+    for (int j = 0; j < 8; j++) {
+      count += (x_xor_y >> j) & one;
+    }
   }
 
   count.write("count");

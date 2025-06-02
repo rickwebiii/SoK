@@ -19,6 +19,9 @@
 */
 
 #include <iostream>
+#include <string>
+#include <sstream>
+
 
 /* local includes */
 #include <tfhe_bit_exec.hxx>
@@ -30,14 +33,25 @@
 using namespace std;
 using namespace cingulata;
 
+void write(const char* name, const short i, const unsigned char value) {
+  stringstream ss;
+  ss << name << i;
+  string str;
+  ss >> str;
+
+  CiInt x{value, 8, false};
+  x.encrypt().write(str);
+}
+
 int main(int argc, char *argv[]) {
-
-  CiInt x{0xFEEDF00DCAFEBABE, 64, false};
-  CiInt y{0x123456789ABCDEF0, 64, false};
-
   /* Only tfhe bit executor is needed for encryption/decryption and IO operations  */
   CiContext::set_bit_exec(make_shared<TfheBitExec>("tfhe.sk", TfheBitExec::Secret));
 
-  x.encrypt().write("x");
-  y.encrypt().write("y");
+  unsigned char x[] = { 0xFE, 0xED, 0xF0, 0x0D, 0xCA, 0xFE, 0xBA, 0xBE };
+  unsigned char y[] = { 0x12, 0x34, 0x56, 0x78, 0x9A, 0xBC, 0xDE, 0xF0 };
+
+  for (unsigned short i = 0; i < 8; i++) {
+    write("x", i, x[i]);
+    write("y", i, y[i]);
+  }
 }

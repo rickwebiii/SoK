@@ -63,12 +63,12 @@ upload_file() {
 #     && ./run.sh \
 #     && upload_file Cingulata cingulata_kernel.csv fhe_parameters_kernel.txt
 
-# echo "Running hamming..."
-# cd /cingu/build_tfhe/tests/tfhe/hamming \
-#     && chmod +x run.sh \
-#     && ./run.sh
-
-echo "Running auction..."
-cd /cingu/build_tfhe/tests/tfhe/auction \
+echo "Running hamming..."
+cd /cingu/build_tfhe/tests/tfhe/hamming \
     && chmod +x run.sh \
     && ./run.sh
+
+# echo "Running auction..."
+# cd /cingu/build_tfhe/tests/tfhe/auction \
+#     && chmod +x run.sh \
+#     && ./run.sh

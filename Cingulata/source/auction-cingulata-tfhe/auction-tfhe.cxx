@@ -43,7 +43,7 @@ using namespace cingulata;
 #define DIABETES_FIELD 3
 #define PRESSURE_FIELD 4
 
-#define COUNT 2
+#define COUNT 32
 
 int main() {
   /* Set context to tfhe bit executor and size minimized integer
