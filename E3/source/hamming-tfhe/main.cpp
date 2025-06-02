@@ -4,6 +4,8 @@
 
 using SecureByte = TypeUint<8>;
 
+#define SIZE
+
 int main()
 {
   // == inputs ====
@@ -17,7 +19,7 @@ int main()
   // == //END inputs ====
   SecureByte count = _0_Ep;
   
-  for (int i = 0; i < 8; i++) {
+  for (int i = 0; i < SIZE; i++) {
     SecureByte x_xor_y = x[i] ^ y[i];
 
     for (int j = 0; j < 8; j++) {
