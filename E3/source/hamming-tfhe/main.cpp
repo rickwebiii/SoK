@@ -4,7 +4,7 @@
 
 using SecureByte = TypeUint<8>;
 
-#define SIZE
+#define SIZE 8
 
 int main()
 {

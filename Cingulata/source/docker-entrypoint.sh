@@ -8,17 +8,15 @@ upload_file() {
     done  
 }
 
-# echo "Running chi-squared-cingulata-tfhe..."
-# cd /cingu/build_tfhe/tests/tfhe/chi-squared \
-#     && chmod +x run.sh \
-#     && ./run.sh \
-#     && upload_file Cingulata-TFHE cingulata_chi_squared_tfhe.csv fhe_parameters.txt
+echo "Running chi-squared-cingulata-tfhe..."
+cd /cingu/build_tfhe/tests/tfhe/chi-squared \
+    && chmod +x run.sh \
+    && ./run.sh
 
-# echo "Running cardio-cingulata-tfhe..."
-# cd /cingu/build_tfhe/tests/tfhe/cardio \
-#     && chmod +x run.sh \
-#     && ./run.sh \
-#     && upload_file Cingulata-TFHE cingulata_cardio_tfhe.csv fhe_parameters.txt
+echo "Running cardio-cingulata-tfhe..."
+cd /cingu/build_tfhe/tests/tfhe/cardio \
+    && chmod +x run.sh \
+    && ./run.sh
 
 
 # echo "Running chi-squared..."
@@ -68,7 +66,7 @@ cd /cingu/build_tfhe/tests/tfhe/hamming \
     && chmod +x run.sh \
     && ./run.sh
 
-# echo "Running auction..."
-# cd /cingu/build_tfhe/tests/tfhe/auction \
-#     && chmod +x run.sh \
-#     && ./run.sh
+echo "Running auction..."
+cd /cingu/build_tfhe/tests/tfhe/auction \
+    && chmod +x run.sh \
+    && ./run.sh
